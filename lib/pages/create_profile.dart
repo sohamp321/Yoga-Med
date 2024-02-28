@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 import 'package:yoga_med/pages/audio_player.dart';
 
 Future<String> createFolder(String folderName, String name, String age,
@@ -66,24 +67,25 @@ Future<bool> _manageExternalStoragePermission() async {
   }
 }
 
-TextFormField TextFieldFunction(
-    final fieldController, String _hintText, String _labelText, String errMsg) {
+TextFormField textFieldFunction(BuildContext context, final fieldController,
+    String _hintText, String _labelText, String errMsg) {
   return TextFormField(
     style: TextStyle(color: Colors.white, fontSize: 20),
     controller: fieldController,
     decoration: InputDecoration(
-      enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
-      ),
-      floatingLabelStyle: TextStyle(color: Colors.white),
-      hintText: _hintText,
-      hintStyle: TextStyle(color: Colors.white38),
-      labelText: _labelText,
-      labelStyle: TextStyle(color: Colors.white), // For the label
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Color(0xff58c9b0)),
-      ),
-    ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+        ),
+        floatingLabelStyle: TextStyle(color: Colors.white),
+        hintText: _hintText,
+        hintStyle: TextStyle(color: Colors.white38),
+        labelText: _labelText,
+        labelStyle: TextStyle(color: Colors.white), // For the label
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xff58c9b0)),
+        ),
+        errorStyle: TextStyle(
+            color: Theme.of(context).colorScheme.error, fontSize: 15)),
     validator: (value) {
       if (value!.trim().isEmpty) {
         return errMsg;
@@ -126,9 +128,12 @@ class _CreateProfileState extends State<CreateProfile> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              const Text(
+              Text(
                 "Create a New Profile",
-                style: TextStyle(color: Color(0xff58c977), fontSize: 30),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600),
               ),
               Lottie.asset('assets/jsons/hii-animation.json',
                   animate: true, height: 250),
@@ -138,22 +143,26 @@ class _CreateProfileState extends State<CreateProfile> {
                       key: formKey,
                       child: Column(
                         children: <Widget>[
-                          TextFieldFunction(
+                          textFieldFunction(
+                              context,
                               nameController,
                               "Please enter your name",
                               "Name",
                               "Please enter your name"),
-                          TextFieldFunction(
+                          textFieldFunction(
+                              context,
                               ageController,
                               "Please enter your age",
                               "Age",
                               "Please enter your age"),
-                          TextFieldFunction(
+                          textFieldFunction(
+                              context,
                               genderController,
                               "Please enter your gender",
                               "Gender",
                               "Please enter your gender"),
-                          TextFieldFunction(
+                          textFieldFunction(
+                              context,
                               nurseController,
                               "Please enter your Nurse name",
                               "Nurse name",
@@ -164,7 +173,8 @@ class _CreateProfileState extends State<CreateProfile> {
                             width: 150,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xff58c9b0),
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.tertiary,
                                   textStyle: const TextStyle(fontSize: 18)),
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
@@ -188,7 +198,8 @@ class _CreateProfileState extends State<CreateProfile> {
                               child: const Text(
                                 "Create Profile",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 14),
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
                               ),
                             ),
                           ),
