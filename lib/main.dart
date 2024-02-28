@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:yoga_med/pages/splash_screen.dart';
+import 'package:yoga_med/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade600),
-        useMaterial3: true,
-      ),
+      theme: theme,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
