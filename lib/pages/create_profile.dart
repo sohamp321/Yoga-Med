@@ -189,10 +189,10 @@ class _CreateProfileState extends State<CreateProfile> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                           content: Text("Profile Created")));
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => AudioPlayer()),
-                                  );
+                                  // Navigator.of(context).pushReplacement(
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) => AudioPlayerPage()),
+                                  // );
                                 }
                               },
                               child: const Text(

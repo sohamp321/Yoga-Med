@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       String? existingUser = prefs.getString('selectedFolder');
 
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => CreateProfile(),
+          MaterialPageRoute(builder: (context) => AudioPlayerPage(currentUser: "Soham"),
           ));
 
       if (existingUser != null && existingUser.isNotEmpty) {
